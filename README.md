@@ -54,6 +54,18 @@ azd init --template Azure-Samples/todo-nodejs-mongo
 azd up
 ```
 
+### Local Development with the Cosmos Emulator
+
+For local development in this repo, use the native Windows Azure Cosmos DB Emulator instead of a standalone MongoDB instance.
+
+1. Install the emulator from `https://aka.ms/cosmosdb-emulator`.
+2. Start it and confirm the explorer opens at `https://localhost:8081/_explorer/index.html`.
+3. Use the API environment file in `src/api/.env` with the emulator endpoint and key.
+4. Start the API from `src/api`.
+5. Optionally seed the emulator with `npm run seed:local` from `src/api`.
+
+The API bootstraps the local `todo-db` database and the `TodoList` and `TodoItem` containers automatically when it detects the emulator.
+
 ### Application Architecture
 
 This application utilizes the following Azure resources:

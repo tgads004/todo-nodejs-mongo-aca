@@ -6,6 +6,8 @@ export interface ObservabilityConfig {
 export interface DatabaseConfig {
     endpoint: string
     databaseName: string
+    key?: string
+    connectionString?: string
 }
 
 export interface AppConfig {

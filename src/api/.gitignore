@@ -105,3 +105,4 @@ dist
 
 # Azure Functions artifacts
 local.settings.json
+local.json

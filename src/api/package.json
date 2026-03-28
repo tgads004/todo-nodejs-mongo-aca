@@ -10,6 +10,7 @@
     "build": "tsc -b .",
     "prestart": "npm run build",
     "start": "node .",
+    "seed:local": "node ./scripts/seed-local-db.js",
     "test": "jest --coverage"
   },
   "author": "",
