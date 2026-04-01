@@ -1,6 +1,6 @@
 import express, { Express } from "express";
-import swaggerUI from "swagger-ui-express";
 import cors from "cors";
+import swaggerUI from "swagger-ui-express";
 import yaml from "yamljs";
 import { getConfig } from "./config";
 import lists from "./routes/lists";
@@ -12,24 +12,23 @@ import { observability } from "./config/observability";
 // `http://localhost:300, http://otherurl:100`
 // Requests coming to the api server from other urls will be rejected as per
 // CORS.
-const allowOrigins = process.env.API_ALLOW_ORIGINS;
+const originList = (): string[] | string => {
+    // Use NODE_ENV to change webConfiguration based on this value.
+    // For example, setting NODE_ENV=development disables CORS checking,
+    // allowing all origins.
+    const environment = process.env.NODE_ENV;
 
-// Use NODE_ENV to change webConfiguration based on this value.
-// For example, setting NODE_ENV=development disables CORS checking,
-// allowing all origins.
-const environment = process.env.NODE_ENV;
-
-const originList = ():string[]|string => {
-    
     if (environment && environment === "development") {
         console.log(`Allowing requests from any origins. NODE_ENV=${environment}`);
         return "*";
     }
-    
+
     const origins = [
         "https://portal.azure.com",
         "https://ms.portal.azure.com",
     ];
+
+    const allowOrigins = process.env.API_ALLOW_ORIGINS;
 
     if (allowOrigins && allowOrigins !== "") {
         allowOrigins.split(",").forEach(origin => {
@@ -49,7 +48,7 @@ export const createApp = async (): Promise<Express> => {
     await configureCosmos(config.database);
     // Middleware
     app.use(express.json());
-    
+
     app.use(cors({
         origin: originList()
     }));

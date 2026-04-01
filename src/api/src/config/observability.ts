@@ -28,6 +28,11 @@ export const observability = (config: ObservabilityConfig) => {
         app: config.roleName
     };
 
+    if (shouldSkipApplicationInsights(config.connectionString)) {
+        logger.info("Skipping ApplicationInsights setup for local placeholder configuration");
+        return;
+    }
+
     try {
         applicationInsights
             .setup(config.connectionString)
@@ -64,3 +69,17 @@ if (process.env.NODE_ENV !== "production") {
         format: winston.format.simple()
     }));
 }
+
+const shouldSkipApplicationInsights = (connectionString?: string): boolean => {
+    if (!connectionString) {
+        return true;
+    }
+
+    const normalizedConnectionString = connectionString.trim().toLowerCase();
+
+    if (!normalizedConnectionString) {
+        return true;
+    }
+
+    return normalizedConnectionString.includes("instrumentationkey=00000000-0000-0000-0000-000000000000");
+};

@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 export type TodoList = {
     id: string
     name: string
@@ -21,5 +23,5 @@ export const createTodoList = (name: string, description?: string): TodoList => 
 };
 
 const generateId = (): string => {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    return randomUUID();
 };

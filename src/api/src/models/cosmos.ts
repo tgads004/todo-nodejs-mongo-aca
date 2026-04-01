@@ -2,25 +2,57 @@ import { CosmosClient, Database, Container } from "@azure/cosmos";
 import { DefaultAzureCredential } from "@azure/identity";
 import { DatabaseConfig } from "../config/appConfig";
 import { logger } from "../config/observability";
+import { createDefaultTodoItems, createDefaultTodoList } from "./sampleData";
 
 let cosmosClient: CosmosClient;
 let database: Database;
 let todoListContainer: Container;
 let todoItemContainer: Container;
 
+const databaseId = "Todo";
+const todoListContainerId = "TodoList";
+const todoItemContainerId = "TodoItem";
+
 export const configureCosmos = async (config: DatabaseConfig) => {
     try {
         logger.info("Configuring Cosmos DB client...");
-        
-        const credential = new DefaultAzureCredential();
-        cosmosClient = new CosmosClient({
-            endpoint: config.endpoint,
-            aadCredentials: credential
-        });
 
-        database = cosmosClient.database(config.databaseName);
-        todoListContainer = database.container("TodoList");
-        todoItemContainer = database.container("TodoItem");
+        cosmosClient = createCosmosClient(config);
+
+        const shouldAutoCreate = Boolean(config.autoCreate) || isCosmosEmulatorConfig(config);
+
+        if (shouldAutoCreate) {
+            logger.info(`Ensuring Cosmos DB database '${config.databaseName}' and containers exist...`);
+            const databaseResponse = await cosmosClient.databases.createIfNotExists({
+                id: config.databaseName || databaseId,
+            });
+            database = databaseResponse.database;
+
+            const todoListResponse = await database.containers.createIfNotExists({
+                id: todoListContainerId,
+                partitionKey: {
+                    paths: ["/Hash"],
+                },
+            });
+
+            const todoItemResponse = await database.containers.createIfNotExists({
+                id: todoItemContainerId,
+                partitionKey: {
+                    paths: ["/Hash"],
+                },
+            });
+
+            todoListContainer = todoListResponse.container;
+            todoItemContainer = todoItemResponse.container;
+        } else {
+            database = cosmosClient.database(config.databaseName);
+            todoListContainer = database.container(todoListContainerId);
+            todoItemContainer = database.container(todoItemContainerId);
+        }
+
+        if (config.seedSampleData) {
+            await seedSampleDataIfEmpty();
+        }
 
         logger.info("Cosmos DB client configured successfully!");
     }
@@ -42,4 +74,79 @@ export const getTodoItemContainer = (): Container => {
         throw new Error("Cosmos DB client not configured. Call configureCosmos first.");
     }
     return todoItemContainer;
+};
+
+const createCosmosClient = (config: DatabaseConfig): CosmosClient => {
+    if (config.connectionString) {
+        logger.info("Using Cosmos DB connection string authentication.");
+        return new CosmosClient(config.connectionString);
+    }
+
+    if (config.endpoint && config.key) {
+        logger.info("Using Cosmos DB endpoint and key authentication.");
+        return new CosmosClient({
+            endpoint: config.endpoint,
+            key: config.key,
+        });
+    }
+
+    if (!config.endpoint) {
+        throw new Error("Cosmos DB endpoint is required when AZURE_COSMOS_CONNECTION_STRING is not set.");
+    }
+
+    logger.info("Using Cosmos DB AAD authentication.");
+    const credential = new DefaultAzureCredential();
+    return new CosmosClient({
+        endpoint: config.endpoint,
+        aadCredentials: credential,
+    });
+};
+
+const isCosmosEmulatorConfig = (config: DatabaseConfig): boolean => {
+    const endpoint = config.endpoint || getEndpointFromConnectionString(config.connectionString);
+
+    if (!endpoint) {
+        return false;
+    }
+
+    try {
+        const url = new URL(endpoint);
+        return url.hostname === "localhost" || url.hostname === "127.0.0.1";
+    } catch {
+        return endpoint.includes("localhost") || endpoint.includes("127.0.0.1");
+    }
+};
+
+const getEndpointFromConnectionString = (connectionString?: string): string | undefined => {
+    if (!connectionString) {
+        return undefined;
+    }
+
+    const accountEndpoint = connectionString
+        .split(";")
+        .find((segment) => segment.toLowerCase().startsWith("accountendpoint="));
+
+    return accountEndpoint?.split("=")[1];
+};
+
+const seedSampleDataIfEmpty = async (): Promise<void> => {
+    const existingLists = await todoListContainer.items
+        .query({
+            query: "SELECT TOP 1 c.id FROM c",
+        })
+        .fetchAll();
+
+    if (existingLists.resources.length > 0) {
+        logger.info("Skipping sample data seed because todo lists already exist.");
+        return;
+    }
+
+    const defaultList = createDefaultTodoList();
+
+    await todoListContainer.items.create(defaultList);
+
+    const sampleItems = createDefaultTodoItems(defaultList.id);
+    await Promise.all(sampleItems.map((item) => todoItemContainer.items.create(item)));
+
+    logger.info(`Seeded sample data with default list '${defaultList.name}' and ${sampleItems.length} items.`);
 };

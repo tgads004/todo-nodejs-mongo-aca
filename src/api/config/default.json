@@ -1,7 +1,11 @@
 {
     "database": {
         "endpoint": "",
-        "databaseName": "Todo"
+        "databaseName": "Todo",
+        "key": "",
+        "connectionString": "",
+        "autoCreate": false,
+        "seedSampleData": false
     },
     "observability": {
         "connectionString": "",
