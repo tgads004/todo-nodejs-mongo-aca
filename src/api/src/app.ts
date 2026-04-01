@@ -39,9 +39,8 @@ const originList = (): string[] | string => {
     return origins;
 };
 
-export const createApp = async (): Promise<Express> => {
+export const configureApp = async (app: Express): Promise<void> => {
     const config = await getConfig();
-    const app = express();
 
     // Configuration
     observability(config.observability);
@@ -60,6 +59,10 @@ export const createApp = async (): Promise<Express> => {
     // Swagger UI
     const swaggerDocument = yaml.load("./openapi.yaml");
     app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+};
 
+export const createApp = async (): Promise<Express> => {
+    const app = express();
+    await configureApp(app);
     return app;
 };

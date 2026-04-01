@@ -81,7 +81,7 @@ const populateEnvironmentFromKeyVault = async () => {
         }
     }
     catch (err: any) {
-        logger.error(`Error authenticating with Azure KeyVault.  Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`);
-        throw err;
+        logger.warn(`Error reading from Azure KeyVault. Falling back to environment variables. Error: ${err}`);
+        // Do not rethrow – all required config is provided via Container App environment variables
     }
 };
