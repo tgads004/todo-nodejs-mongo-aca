@@ -1,3 +1,4 @@
+import https from "https";
 import { CosmosClient, Database, Container } from "@azure/cosmos";
 import { DefaultAzureCredential } from "@azure/identity";
 import { DatabaseConfig } from "../config/appConfig";
@@ -84,10 +85,17 @@ const createCosmosClient = (config: DatabaseConfig): CosmosClient => {
 
     if (config.endpoint && config.key) {
         logger.info("Using Cosmos DB endpoint and key authentication.");
-        return new CosmosClient({
+        const clientOptions: ConstructorParameters<typeof CosmosClient>[0] = {
             endpoint: config.endpoint,
             key: config.key,
-        });
+        };
+        // Node.js 20's native fetch (undici) does not reliably honour
+        // NODE_TLS_REJECT_UNAUTHORIZED at runtime.  Pass a custom agent
+        // so the emulator's self-signed cert is accepted without hanging.
+        if (isCosmosEmulatorConfig(config)) {
+            (clientOptions as any).agent = new https.Agent({ rejectUnauthorized: false });
+        }
+        return new CosmosClient(clientOptions);
     }
 
     if (!config.endpoint) {
@@ -150,3 +158,4 @@ const seedSampleDataIfEmpty = async (): Promise<void> => {
 
     logger.info(`Seeded sample data with default list '${defaultList.name}' and ${sampleItems.length} items.`);
 };
+
