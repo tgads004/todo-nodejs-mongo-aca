@@ -1,57 +1,193 @@
-# Run when commits are pushed to mainline branch (main or master)
-# Set this to the mainline branch you are using
+name: App-Deploy-Main-$(Date:yyyyMMdd).$(Rev:r)
+
 trigger:
   - main
   - master
 
-# Azure Pipelines workflow to deploy to Azure using azd
-# To configure required secrets and service connection for connecting to Azure, simply run `azd pipeline config --provider azdo`
-# Task "Install azd" needs to install setup-azd extension for azdo - https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azd
-# See below for alternative task to install azd if you can't install above task in your organization
+variables:
+- group: App-Env-Vars
 
 pool:
-  vmImage: ubuntu-latest
+  name: "Default"
 
 steps:
-  - task: setup-azd@1 
-    displayName: Install azd
+- pwsh: |
+    azd config set auth.useAzCliAuth "true"
+  displayName: Configure AZD to Use AZ CLI Authentication
 
-  # If you can't install above task in your organization, you can comment it and uncomment below task to install azd
-  # - task: Bash@3
-  #   displayName: Install azd
-  #   inputs:
-  #     targetType: 'inline'
-  #     script: |
-  #       curl -fsSL https://aka.ms/install-azd.sh | bash
+# --- STEP 1: Provision Infrastructure ---
+- task: AzureCLI@2
+  displayName: Provision Infrastructure
+  inputs:
+    azureSubscription: Azure-Service-Connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    useGlobalConfig: true
+    inlineScript: |
+      $ErrorActionPreference = "Stop"
+      $commitCount = git rev-list --count HEAD
+      if ($commitCount -gt 1) {
+          $changedFiles = git diff --name-only HEAD~1 HEAD infra/
+          if ($null -eq $changedFiles -or $changedFiles.Count -eq 0) {
+              Write-Host "No infra changes detected. Skipping provision."
+          } else {
+              azd provision --no-prompt
+          }
+      } else {
+          azd provision --no-prompt
+      }
+  env:
+    AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    AZURE_ENV_NAME: $(AZURE_ENV_NAME)
+    AZURE_LOCATION: $(AZURE_LOCATION)
 
-  # azd delegate auth to az to use service connection with AzureCLI@2
-  - pwsh: |
-      azd config set auth.useAzCliAuth "true"
-    displayName: Configure AZD to Use AZ CLI Authentication.
+# --- STEP 2: Deploy Application ---
+- task: AzureCLI@2
+  displayName: Deploy Application
+  inputs:
+    azureSubscription: Azure-Service-Connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    useGlobalConfig: true
+    inlineScript: |
+      $ErrorActionPreference = "Stop"
+      azd deploy --no-prompt
+      $SERVICE_URL = azd env get-value REACT_APP_WEB_BASE_URL
+      $filePath = "$(Build.ArtifactStagingDirectory)/app-url.txt"
+      New-Item -Path "$(Build.ArtifactStagingDirectory)" -ItemType Directory -Force
+      [System.IO.File]::WriteAllText($filePath, $SERVICE_URL)
+      Write-Host "##vso[task.setvariable variable=APP_URL;isOutput=true]$SERVICE_URL"
+  env:
+    AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    AZURE_ENV_NAME: $(AZURE_ENV_NAME)
+    AZURE_LOCATION: $(AZURE_LOCATION)
 
-  - task: AzureCLI@2
-    displayName: Provision Infrastructure
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd provision --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
-      AZD_INITIAL_ENVIRONMENT_CONFIG: $(secrets.AZD_INITIAL_ENVIRONMENT_CONFIG)
+# --- NEW STEP: Conditional Data Seed ---
+# Prerequisites:
+#   - The self-hosted pipeline agent must have the Cosmos emulator running with seed data at localhost:8081.
+#   - The service connection's service principal is granted Cosmos DB Built-in Data Contributor
+#     dynamically below; it requires at minimum 'Contributor' on the resource group (already
+#     needed for azd provision) so no additional service connection permissions are required.
+- task: AzureCLI@2
+  name: CheckAndSeed
+  displayName: 'Check and Seed Database'
+  inputs:
+    azureSubscription: Azure-Service-Connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+      $ErrorActionPreference = "Stop"
 
-  - task: AzureCLI@2
-    displayName: Deploy Application
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd deploy --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
+      # --- 1. Resolve environment values ---
+      $apiUrl          = azd env get-value API_BASE_URL
+      $cosmosEndpoint  = azd env get-value AZURE_COSMOS_ENDPOINT
+      $subscriptionId  = azd env get-value AZURE_SUBSCRIPTION_ID
+      $envName         = azd env get-value AZURE_ENV_NAME
+      $resourceGroup   = "rg-$envName"
+      # Derive the Cosmos account name from the endpoint URI (e.g. cosmos-xxxx.documents.azure.com)
+      $cosmosAccount   = ([uri]$cosmosEndpoint).Host.Split('.')[0]
+
+      # --- 2. Idempotency check: call the deployed API to see if lists exist ---
+      Write-Host "Checking for existing data at $apiUrl/lists ..."
+      $isEmpty    = $true
+      $maxRetries = 5
+      for ($i = 1; $i -le $maxRetries; $i++) {
+          try {
+              $lists   = Invoke-RestMethod -Uri "$apiUrl/lists" -Method GET -ErrorAction Stop
+              $isEmpty = ($lists.Count -eq 0)
+              Write-Host "API responded. Lists count: $($lists.Count)"
+              break
+          } catch {
+              Write-Host "Attempt $i of $maxRetries failed: $($_.Exception.Message)"
+              if ($i -lt $maxRetries) { Start-Sleep -Seconds 15 }
+          }
+      }
+
+      if (-not $isEmpty) {
+          Write-Host "Database already contains data. Skipping seed."
+          exit 0
+      }
+
+      Write-Host "Database is empty. Starting seed process..."
+
+      # --- 3. Verify the Cosmos emulator is accessible on this agent ---
+      try {
+          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
+          $null = Invoke-WebRequest -Uri "https://localhost:8081" -UseBasicParsing -TimeoutSec 5
+          Write-Host "Cosmos emulator is accessible."
+      } catch {
+          Write-Error "Cosmos emulator is not accessible at https://localhost:8081. Ensure the emulator is running on the pipeline agent with the seed data loaded before this step runs."
+          exit 1
+      }
+
+      # --- 4. Grant the pipeline service principal the Cosmos DB Built-in Data Contributor role ---
+      # Built-in Data Contributor role definition ID is fixed across all accounts.
+      $roleDefId     = "00000000-0000-0000-0000-000000000002"
+      $spClientId    = az account show --query "user.name" -o tsv
+      $principalId   = az ad sp show --id $spClientId --query "id" -o tsv
+      $cosmosScope   = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.DocumentDB/databaseAccounts/$cosmosAccount"
+      $existing      = az cosmosdb sql role assignment list `
+                          --account-name $cosmosAccount `
+                          --resource-group $resourceGroup `
+                          --query "[?principalId=='$principalId' && contains(roleDefinitionId,'$roleDefId')].id" `
+                          -o tsv
+      if ([string]::IsNullOrEmpty($existing)) {
+          Write-Host "Assigning Cosmos DB Built-in Data Contributor to service principal $principalId ..."
+          az cosmosdb sql role assignment create `
+              --account-name    $cosmosAccount `
+              --resource-group  $resourceGroup `
+              --role-definition-id $roleDefId `
+              --principal-id    $principalId `
+              --scope           $cosmosScope
+      } else {
+          Write-Host "Cosmos DB data role already assigned."
+      }
+
+      # --- 5. Download the latest DMT release (Windows) from GitHub ---
+      Write-Host "Downloading Azure Cosmos DB Data Migration Tool..."
+      $releaseInfo = Invoke-RestMethod -Uri "https://api.github.com/repos/AzureCosmosDB/data-migration-desktop-tool/releases/latest"
+      $asset       = $releaseInfo.assets | Where-Object { $_.name -like "*windows*" -and $_.name -like "*.zip" } | Select-Object -First 1
+      if ($null -eq $asset) {
+          Write-Error "No Windows DMT zip asset found. Check https://github.com/AzureCosmosDB/data-migration-desktop-tool/releases"
+          exit 1
+      }
+      $dmtZip = "$(Build.BinariesDirectory)/dmt.zip"
+      $dmtDir = "$(Build.BinariesDirectory)/dmt"
+      New-Item -ItemType Directory -Force -Path "$(Build.BinariesDirectory)" | Out-Null
+      Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $dmtZip
+      Expand-Archive -Path $dmtZip -DestinationPath $dmtDir -Force
+      $dmtExe = Get-ChildItem -Path $dmtDir -Filter "dmt.exe" -Recurse | Select-Object -First 1 -ExpandProperty FullName
+      if ($null -eq $dmtExe) {
+          Write-Error "dmt.exe not found in the extracted archive."
+          exit 1
+      }
+      Write-Host "DMT located at: $dmtExe"
+
+      # --- 6. Inject the Cosmos endpoint and write a resolved settings file ---
+      # Never modify the source-controlled file; write to a temp location instead.
+      $srcJson      = "$(Build.SourcesDirectory)/seed/migrationsettings.json"
+      $resolvedJson = "$(Build.BinariesDirectory)/migrationsettings-resolved.json"
+      (Get-Content $srcJson -Raw) -replace "__COSMOS_ENDPOINT__", $cosmosEndpoint | Set-Content $resolvedJson
+      Write-Host "Resolved migration settings written to $resolvedJson"
+
+      # --- 7. Run the migration (DefaultAzureCredential picks up the AzureCLI@2 login context) ---
+      Write-Host "Starting data migration from emulator to Azure Cosmos DB..."
+      & $dmtExe run --settings $resolvedJson
+      if ($LASTEXITCODE -ne 0) {
+          Write-Error "DMT exited with code $LASTEXITCODE"
+          exit $LASTEXITCODE
+      }
+
+      Write-Host "Seeding complete."
+  env:
+    AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    AZURE_ENV_NAME: $(AZURE_ENV_NAME)
+    AZURE_LOCATION: $(AZURE_LOCATION)
+
+# --- STEP 3: Publish URL ---
+- task: PublishPipelineArtifact@1
+  displayName: Publish Deployed App URL
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/app-url.txt'
+    artifact: 'DeployedAppInfo'
+
