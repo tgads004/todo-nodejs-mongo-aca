@@ -144,6 +144,10 @@ module api 'br/public:avm/ptn/azd/container-app-upsert:0.3.0' = {
         value: cosmos.outputs.databaseName
       }
       {
+        name: 'AZURE_COSMOS_SEED_SAMPLE_DATA'
+        value: 'true'
+      }
+      {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
         value: monitoring.outputs.applicationInsightsConnectionString
       }
