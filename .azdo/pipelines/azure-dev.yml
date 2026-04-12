@@ -79,13 +79,15 @@ steps:
       $ErrorActionPreference = "Stop"
 
       # --- 1. Resolve environment values ---
-      $apiUrl          = azd env get-value API_BASE_URL
+      $apiUrl          = (azd env get-value API_BASE_URL).TrimEnd('/')
       $cosmosEndpoint  = azd env get-value AZURE_COSMOS_ENDPOINT
       $subscriptionId  = azd env get-value AZURE_SUBSCRIPTION_ID
       $envName         = azd env get-value AZURE_ENV_NAME
       $resourceGroup   = "rg-$envName"
       # Derive the Cosmos account name from the endpoint URI (e.g. cosmos-xxxx.documents.azure.com)
       $cosmosAccount   = ([uri]$cosmosEndpoint).Host.Split('.')[0]
+
+      Write-Host "Resolved API_BASE_URL: $apiUrl"
 
       # --- 2. Idempotency check: call the deployed API to see if lists exist ---
       Write-Host "Checking for existing data at $apiUrl/lists ..."
@@ -98,7 +100,7 @@ steps:
               Write-Host "API responded. Lists count: $($lists.Count)"
               break
           } catch {
-              Write-Host "Attempt $i of $maxRetries failed: $($_.Exception.Message)"
+              Write-Host "Attempt $i of $maxRetries failed calling '$apiUrl/lists': $($_.Exception.Message)"
               if ($i -lt $maxRetries) { Start-Sleep -Seconds 15 }
           }
       }
