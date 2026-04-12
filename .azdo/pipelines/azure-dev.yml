@@ -152,7 +152,7 @@ steps:
       # --- 5. Download the latest DMT release (Windows) from GitHub ---
       Write-Host "Downloading Azure Cosmos DB Data Migration Tool..."
       $releaseInfo = Invoke-RestMethod -Uri "https://api.github.com/repos/AzureCosmosDB/data-migration-desktop-tool/releases/latest"
-      $asset       = $releaseInfo.assets | Where-Object { $_.name -like "*windows*" -and $_.name -like "*.zip" } | Select-Object -First 1
+      $asset       = $releaseInfo.assets | Where-Object { $_.name -like "*win-x64*" -and $_.name -like "*.zip" } | Select-Object -First 1
       if ($null -eq $asset) {
           Write-Error "No Windows DMT zip asset found. Check https://github.com/AzureCosmosDB/data-migration-desktop-tool/releases"
           exit 1
