@@ -100,6 +100,12 @@ steps:
               Write-Host "API responded. Lists count: $($lists.Count)"
               break
           } catch {
+              $statusCode = $_.Exception.Response.StatusCode.value__
+              if ($statusCode -eq 404) {
+                  Write-Host "API returned 404 - database is empty. Proceeding with seed."
+                  $isEmpty = $true
+                  break
+              }
               Write-Host "Attempt $i of $maxRetries failed calling '$apiUrl/lists': $($_.Exception.Message)"
               if ($i -lt $maxRetries) { Start-Sleep -Seconds 15 }
           }
