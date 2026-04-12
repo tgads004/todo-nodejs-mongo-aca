@@ -120,8 +120,7 @@ steps:
 
       # --- 3. Verify the Cosmos emulator is accessible on this agent ---
       try {
-          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
-          $null = Invoke-WebRequest -Uri "https://localhost:8081" -UseBasicParsing -TimeoutSec 5
+          $null = Invoke-WebRequest -Uri "https://localhost:8081" -UseBasicParsing -SkipCertificateCheck -TimeoutSec 5
           Write-Host "Cosmos emulator is accessible."
       } catch {
           Write-Warning "Cosmos emulator is not accessible at https://localhost:8081. Skipping seed step."
