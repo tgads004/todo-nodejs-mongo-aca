@@ -1,7 +1,11 @@
 {
     "database": {
         "endpoint": "AZURE_COSMOS_ENDPOINT",
-        "databaseName": "AZURE_COSMOS_DATABASE_NAME"
+        "databaseName": "AZURE_COSMOS_DATABASE_NAME",
+        "key": "AZURE_COSMOS_KEY",
+        "connectionString": "AZURE_COSMOS_CONNECTION_STRING",
+        "autoCreate": "AZURE_COSMOS_AUTO_CREATE",
+        "seedSampleData": "AZURE_COSMOS_SEED_SAMPLE_DATA"
     },
     "observability": {
         "connectionString": "APPLICATIONINSIGHTS_CONNECTION_STRING",

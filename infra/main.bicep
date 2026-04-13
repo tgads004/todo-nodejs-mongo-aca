@@ -144,6 +144,10 @@ module api 'br/public:avm/ptn/azd/container-app-upsert:0.3.0' = {
         value: cosmos.outputs.databaseName
       }
       {
+        name: 'AZURE_COSMOS_SEED_SAMPLE_DATA'
+        value: 'true'
+      }
+      {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
         value: monitoring.outputs.applicationInsightsConnectionString
       }
@@ -183,12 +187,14 @@ module cosmos './app/db-avm.bicep' = {
 }
 
 // Role assignment for API managed identity to access Cosmos DB
+// Also grants the signed-in developer access for running local migration scripts
 module apiCosmosRoleAssignment './app/cosmos-role-assignment.bicep' = {
   name: 'api-cosmos-role'
   scope: rg
   params: {
     cosmosAccountName: cosmos.outputs.accountName
     apiPrincipalId: apiIdentity.outputs.principalId
+    developerPrincipalId: principalId
   }
 }
 

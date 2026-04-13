@@ -19,8 +19,8 @@ export const getConfig: () => Promise<AppConfig> = async () => {
     const databaseConfig = config.get<DatabaseConfig>("database");
     const observabilityConfig = config.get<ObservabilityConfig>("observability");
 
-    if (!databaseConfig.endpoint) {
-        logger.warn("database.endpoint is required but has not been set. Ensure environment variable 'AZURE_COSMOS_ENDPOINT' has been set");
+    if (!databaseConfig.endpoint && !databaseConfig.connectionString) {
+        logger.warn("database.endpoint or database.connectionString is required but has not been set. Ensure environment variable 'AZURE_COSMOS_ENDPOINT' or 'AZURE_COSMOS_CONNECTION_STRING' has been set");
     }
 
     if (!observabilityConfig.connectionString) {
@@ -35,8 +35,24 @@ export const getConfig: () => Promise<AppConfig> = async () => {
         database: {
             endpoint: databaseConfig.endpoint,
             databaseName: databaseConfig.databaseName,
+            key: databaseConfig.key,
+            connectionString: databaseConfig.connectionString,
+            autoCreate: parseBoolean(databaseConfig.autoCreate),
+            seedSampleData: parseBoolean(databaseConfig.seedSampleData),
         },
     };
+};
+
+const parseBoolean = (value: boolean | string | undefined): boolean => {
+    if (typeof value === "boolean") {
+        return value;
+    }
+
+    if (typeof value === "string") {
+        return value.toLowerCase() === "true";
+    }
+
+    return false;
 };
 
 const populateEnvironmentFromKeyVault = async () => {
@@ -65,7 +81,7 @@ const populateEnvironmentFromKeyVault = async () => {
         }
     }
     catch (err: any) {
-        logger.error(`Error authenticating with Azure KeyVault.  Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`);
-        throw err;
+        logger.warn(`Error reading from Azure KeyVault. Falling back to environment variables. Error: ${err}`);
+        // Do not rethrow – all required config is provided via Container App environment variables
     }
 };

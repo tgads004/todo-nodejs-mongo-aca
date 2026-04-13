@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 export enum TodoItemState {
     Todo = "todo",
     InProgress = "inprogress",
@@ -33,5 +35,5 @@ export const createTodoItem = (listId: string, name: string, description?: strin
 };
 
 const generateId = (): string => {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    return randomUUID();
 };

@@ -1,57 +1,71 @@
-# Run when commits are pushed to mainline branch (main or master)
-# Set this to the mainline branch you are using
+name: App-Deploy-Main-$(Date:yyyyMMdd).$(Rev:r)
+
 trigger:
   - main
   - master
 
-# Azure Pipelines workflow to deploy to Azure using azd
-# To configure required secrets and service connection for connecting to Azure, simply run `azd pipeline config --provider azdo`
-# Task "Install azd" needs to install setup-azd extension for azdo - https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azd
-# See below for alternative task to install azd if you can't install above task in your organization
+variables:
+- group: App-Env-Vars
 
 pool:
-  vmImage: ubuntu-latest
+  name: "Default"
 
 steps:
-  - task: setup-azd@1 
-    displayName: Install azd
+- pwsh: |
+    azd config set auth.useAzCliAuth "true"
+  displayName: Configure AZD to Use AZ CLI Authentication
 
-  # If you can't install above task in your organization, you can comment it and uncomment below task to install azd
-  # - task: Bash@3
-  #   displayName: Install azd
-  #   inputs:
-  #     targetType: 'inline'
-  #     script: |
-  #       curl -fsSL https://aka.ms/install-azd.sh | bash
+# --- STEP 1: Provision Infrastructure ---
+- task: AzureCLI@2
+  displayName: Provision Infrastructure
+  inputs:
+    azureSubscription: Azure-Service-Connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    useGlobalConfig: true
+    inlineScript: |
+      $ErrorActionPreference = "Stop"
+      $commitCount = git rev-list --count HEAD
+      if ($commitCount -gt 1) {
+          $changedFiles = git diff --name-only HEAD~1 HEAD infra/
+          if ($null -eq $changedFiles -or $changedFiles.Count -eq 0) {
+              Write-Host "No infra changes detected. Skipping provision."
+          } else {
+              azd provision --no-prompt
+          }
+      } else {
+          azd provision --no-prompt
+      }
+  env:
+    AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    AZURE_ENV_NAME: $(AZURE_ENV_NAME)
+    AZURE_LOCATION: $(AZURE_LOCATION)
 
-  # azd delegate auth to az to use service connection with AzureCLI@2
-  - pwsh: |
-      azd config set auth.useAzCliAuth "true"
-    displayName: Configure AZD to Use AZ CLI Authentication.
+# --- STEP 2: Deploy Application ---
+- task: AzureCLI@2
+  displayName: Deploy Application
+  inputs:
+    azureSubscription: Azure-Service-Connection
+    scriptType: ps
+    scriptLocation: inlineScript
+    useGlobalConfig: true
+    inlineScript: |
+      $ErrorActionPreference = "Stop"
+      azd deploy --no-prompt
+      $SERVICE_URL = azd env get-value REACT_APP_WEB_BASE_URL
+      $filePath = "$(Build.ArtifactStagingDirectory)/app-url.txt"
+      New-Item -Path "$(Build.ArtifactStagingDirectory)" -ItemType Directory -Force
+      [System.IO.File]::WriteAllText($filePath, $SERVICE_URL)
+      Write-Host "##vso[task.setvariable variable=APP_URL;isOutput=true]$SERVICE_URL"
+  env:
+    AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    AZURE_ENV_NAME: $(AZURE_ENV_NAME)
+    AZURE_LOCATION: $(AZURE_LOCATION)
 
-  - task: AzureCLI@2
-    displayName: Provision Infrastructure
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd provision --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
-      AZD_INITIAL_ENVIRONMENT_CONFIG: $(secrets.AZD_INITIAL_ENVIRONMENT_CONFIG)
+# --- STEP 3: Publish URL ---
+- task: PublishPipelineArtifact@1
+  displayName: Publish Deployed App URL
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/app-url.txt'
+    artifact: 'DeployedAppInfo'
 
-  - task: AzureCLI@2
-    displayName: Deploy Application
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd deploy --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
