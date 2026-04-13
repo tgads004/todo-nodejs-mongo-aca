@@ -52,7 +52,7 @@ steps:
     inlineScript: |
       $ErrorActionPreference = "Stop"
       azd deploy --no-prompt
-      $SERVICE_URL = azd env get-value SERVICE_WEB_URI
+      $SERVICE_URL = azd env get-value REACT_APP_WEB_BASE_URL
       $filePath = "$(Build.ArtifactStagingDirectory)/app-url.txt"
       New-Item -Path "$(Build.ArtifactStagingDirectory)" -ItemType Directory -Force
       [System.IO.File]::WriteAllText($filePath, $SERVICE_URL)
