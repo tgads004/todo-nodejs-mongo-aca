@@ -167,9 +167,6 @@ module api 'br/public:avm/ptn/azd/container-app-upsert:0.3.0' = {
     containerMinReplicas: 1
     ingressEnabled: true
     containerName: 'main'
-    allowedOrigins: [
-      web.outputs.uri
-    ]
     userAssignedIdentityResourceId: apiIdentity.outputs.resourceId
     identityPrincipalId: apiIdentity.outputs.principalId
   }

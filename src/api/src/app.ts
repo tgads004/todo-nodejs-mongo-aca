@@ -49,7 +49,8 @@ export const configureApp = async (app: Express): Promise<void> => {
     app.use(express.json());
 
     app.use(cors({
-        origin: originList()
+        origin: originList(),
+        methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }));
 
     // API Routes
