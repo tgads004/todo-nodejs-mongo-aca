@@ -27,6 +27,7 @@ Agent instruction details are split into focused documents inside `/docs/`. ALWA
 | [docs/web-standards.md](docs/web-standards.md) | React/Vite frontend conventions, state management, Fluent UI usage |
 | [docs/testing-standards.md](docs/testing-standards.md) | Jest + Supertest patterns, test organization, coverage expectations |
 | [docs/infrastructure.md](docs/infrastructure.md) | Bicep/azd conventions, environment variables, deployment workflow |
+| [docs/auth-standards.md](docs/auth-standards.md) | Microsoft Entra ID / MSAL authentication, API token validation |
 
 ## Non-Negotiable Rules
 
