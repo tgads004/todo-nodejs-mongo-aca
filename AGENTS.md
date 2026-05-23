@@ -28,6 +28,7 @@ Agent instruction details are split into modular documents inside `/docs/`direct
 | [docs/testing-standards.md](docs/testing-standards.md) | Jest + Supertest patterns, test organization, coverage expectations |
 | [docs/infrastructure.md](docs/infrastructure.md) | Bicep/azd conventions, environment variables, deployment workflow |
 | [docs/auth-standards.md](docs/auth-standards.md) | Microsoft Entra ID / MSAL authentication, API token validation |
+| [docs/ui-components.md](docs/ui-components.md) | Fluent UI component requirements, theming, and styling rules |
 
 ## Non-Negotiable Rules
 
