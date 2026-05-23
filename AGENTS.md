@@ -18,7 +18,7 @@ A full-stack **ToDo** application deployed to **Azure Container Apps** using the
 
 ## Detailed Standards
 
-Agent instruction details are split into focused documents inside `/docs/`. ALWAYS read the relevant file BEFORE modifying or generating code in that area.
+Agent instruction details are split into modular documents inside `/docs/`directory. ALWAYS read the relevant file BEFORE modifying or generating code in that area.
 
 | Document | Scope |
 |---|---|
