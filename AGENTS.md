@@ -1,6 +1,7 @@
 # Agent Instructions — todo-nodejs-mongo-aca
 
-This file provides LLM coding agents with the authoritative standards and conventions for this project. ALWAYS follow these instructions when reading, writing, or modifying any code in this repository.
+
+**BEFORE making any changes:** Read this file AND every markdown file in `/docs/`in full. Do not modify, create, or delete any code until all standards files have been read.  ALWAYS follow these instructions when reading, writing, or modifying any code in this repository.
 
 ## Project at a Glance
 
@@ -38,10 +39,11 @@ These rules apply everywhere in the codebase and override any other preference:
 2. **Strict typing.** Avoid `any` except in `catch` blocks where the error type is unknown — annotate those as `catch (err: any)`.
 3. **No secrets in source.** Connection strings, keys, and credentials are always resolved from environment variables or Azure Key Vault — never hardcoded.
 4. **CORS is intentional.** The CORS configuration in `src/api/src/app.ts` is security-critical. Do not loosen it without explicit instruction. In production, allowed origins must be explicitly enumerated.
-5. **Lint must pass.** Run `npm run lint` in both `src/api/` and `src/web/` before declaring code complete. Zero warnings are expected on the web package (`--max-warnings 0`).
+5. **Lint must pass.** Run `npm run lint` in both `src/api/` and `src/web/`after every change. Fix all errors before finishing — do not suppress or skip lint failures.
 6. **Tests must pass.** Run `npm test` inside `src/api/` before declaring API changes complete.
 7. **Do not commit `.env` files or `*.env.local` files.** These are already gitignored.
 8. **Follow existing file structure.** Place new API route files in `src/api/src/routes/`, models in `src/api/src/models/`, and configuration in `src/api/src/config/`. Place new web components in `src/web/src/components/`.
+9. **Install before importing.** When introducing a package not already listed in `package.json`, run `npm install <package-name>` in the correct service directory (`src/api/` or `src/web/`) before writing any code that imports it.
 
 ## Key Commands
 

@@ -17,6 +17,32 @@ All authentication and authorization in this application is handled exclusively 
 - Acquire tokens silently with `acquireTokenSilent`; fall back to `acquireTokenPopup` or `acquireTokenRedirect` on interaction-required errors.
 - Store the MSAL configuration (clientId, authority, redirectUri) in `src/web/src/config/index.ts`, sourced from environment variables via Vite (`import.meta.env`).
 
+## Routing Structure
+
+When wiring MSAL into the React app, the provider and route hierarchy in `App.tsx` must follow this exact order:
+
+1. `MsalProvider` is the outermost wrapper — it must wrap `BrowserRouter`
+2. `/login` renders `LoginPage` directly, without `Layout` — it is a public route that must not import from any service file or trigger any API calls
+3. All other routes render inside `AuthenticatedTemplate` wrapping `Layout`
+4. `UnauthenticatedTemplate` redirects to `/login` using react-router `Navigate`
+5. `Layout`, its existing child routes, and its `useEffect` calls must never be modified for auth concerns — the guard sits above it in `App.tsx`
+
+```tsx
+<MsalProvider instance={msalInstance}>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/*" element={
+        <>
+          <AuthenticatedTemplate><Layout /></AuthenticatedTemplate>
+          <UnauthenticatedTemplate><Navigate to="/login" replace /></UnauthenticatedTemplate>
+        </>
+      } />
+    </Routes>
+  </BrowserRouter>
+</MsalProvider> 
+```
+
 ## Backend (Express / Token Validation)
 
 - Use `@azure/msal-node` or a standards-compliant JWT validation library (e.g., `passport-azure-ad` or `jwks-rsa` + `jsonwebtoken`) to validate incoming Bearer tokens on every protected route.
