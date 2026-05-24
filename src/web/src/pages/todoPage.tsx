@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { bindActionCreators } from '../actions/actionCreators';
 import WithApplicationInsights from '../components/telemetryWithAppInsights.tsx';
 
-const HomePage = () => {
+const TodoPage = () => {
     const navigate = useNavigate();
     const appContext = useContext<AppContext>(TodoContext)
     const { listId, itemId } = useParams();
@@ -157,6 +157,6 @@ const HomePage = () => {
     );
 };
 
-const HomePageWithTelemetry = WithApplicationInsights(HomePage, 'HomePage');
+const TodoPageWithTelemetry = WithApplicationInsights(TodoPage, 'TodoPage');
 
-export default HomePageWithTelemetry;
+export default TodoPageWithTelemetry;

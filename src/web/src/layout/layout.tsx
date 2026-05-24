@@ -2,7 +2,7 @@ import { FC, ReactElement, useContext, useEffect, useMemo } from 'react';
 import Header from './header';
 import Sidebar from './sidebar';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import HomePage from '../pages/homePage';
+import TodoPage from '../pages/todoPage';
 import { Stack } from '@fluentui/react';
 import { AppContext } from '../models/applicationState';
 import { TodoContext } from '../components/todoContext';
@@ -62,10 +62,10 @@ const Layout: FC = (): ReactElement => {
                 </Stack.Item>
                 <Stack.Item grow={1} styles={mainStackStyles}>
                     <Routes>
-                        <Route path="/lists/:listId/items/:itemId" element={<HomePage />} />
-                        <Route path="/lists/:listId" element={<HomePage />} />
-                        <Route path="/lists" element={<HomePage />} />
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/lists/:listId/items/:itemId" element={<TodoPage />} />
+                        <Route path="/lists/:listId" element={<TodoPage />} />
+                        <Route path="/lists" element={<TodoPage />} />
+                        <Route path="/" element={<TodoPage />} />
                     </Routes>
                 </Stack.Item>
                 <Stack.Item styles={sidebarStackStyles}>

@@ -1,6 +1,6 @@
 # Authorization Standards
 
-All authentication and authorization in this application is handled exclusively by **Microsoft Entra ID** via the **MSAL (Microsoft Authentication Library)**. No other auth methods (Basic Auth, API keys, custom JWT issuance, session cookies, etc.) are permitted.
+All authentication and authorization in this application is handled exclusively by **Microsoft Entra External ID** via the **MSAL (Microsoft Authentication Library)**. No other auth methods (Basic Auth, API keys, custom JWT issuance, session cookies, etc.) are permitted.
 
 ## Non-Negotiable Rules
 
@@ -58,5 +58,5 @@ When wiring MSAL into the React app, the provider and route hierarchy in `App.ts
 | `AZURE_CLIENT_ID` | Both — Entra app registration client ID |
 | `AZURE_TENANT_ID` | API — Entra tenant for token issuer validation |
 | `VITE_AZURE_CLIENT_ID` | Web — exposed to Vite build |
-| `VITE_AZURE_AUTHORITY` | Web — full authority URL (`https://login.microsoftonline.com/<tenantId>`) |
+| `VITE_AZURE_AUTHORITY` | Web — External ID authority URL (`https://<tenant>.ciamlogin.com/<tenantId>`) |
 | `VITE_REDIRECT_URI` | Web — post-login redirect URI |
