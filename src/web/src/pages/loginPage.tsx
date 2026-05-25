@@ -1,15 +1,23 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useMsal } from '@azure/msal-react';
 import { Stack, Text, PrimaryButton } from '@fluentui/react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: FC = () => {
-    const { instance } = useMsal();
+    const { instance, accounts } = useMsal();
+    const navigate = useNavigate();
 
-    const handleLogin = () => {
-        instance.loginPopup().catch(() => {
-            instance.loginRedirect();
-        });
-    };
+      useEffect(() => {
+        if (accounts.length > 0) {
+            navigate('/');
+        }
+    }, [accounts, navigate]);
+    
+const handleLogin = () => {
+    instance.loginRedirect({
+        scopes: ['openid', 'profile', 'email']
+    });
+};
 
     return (
         <Stack

@@ -1,4 +1,4 @@
-import { useReducer, FC } from 'react';
+import { useReducer, FC, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { MsalProvider, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import Layout from './layout/layout';
@@ -14,12 +14,18 @@ import Telemetry from './components/telemetry';
 import { msalInstance } from './config';
 
 initializeIcons(undefined, { disableWarnings: true });
-
 const App: FC = () => {
   const defaultState: ApplicationState = getDefaultState();
   const [applicationState, dispatch] = useReducer(appReducer, defaultState);
   const initialContext: AppContext = { state: applicationState, dispatch: dispatch }
 
+  // Handle redirect response when returning from Microsoft login
+  useEffect(() => {
+    msalInstance.handleRedirectPromise().catch(err => {
+      console.error('Redirect error:', err);
+    });
+  }, []);
+  
   return (
     <MsalProvider instance={msalInstance}>
       <ThemeProvider applyTo="body" theme={DarkTheme}>

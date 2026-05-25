@@ -31,6 +31,9 @@ const msalConfig: Configuration = {
         clientId: import.meta.env.VITE_AZURE_CLIENT_ID || '',
         authority: import.meta.env.VITE_AZURE_AUTHORITY || 'https://login.microsoftonline.com/common',
         redirectUri: import.meta.env.VITE_REDIRECT_URI || window.location.origin,
+        knownAuthorities: import.meta.env.VITE_AZURE_AUTHORITY
+            ? [new URL(import.meta.env.VITE_AZURE_AUTHORITY).hostname]
+            : [],
     },
     cache: {
         cacheLocation: 'sessionStorage',

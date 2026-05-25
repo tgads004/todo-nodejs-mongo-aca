@@ -17,6 +17,21 @@ All authentication and authorization in this application is handled exclusively 
 - Acquire tokens silently with `acquireTokenSilent`; fall back to `acquireTokenPopup` or `acquireTokenRedirect` on interaction-required errors.
 - Store the MSAL configuration (clientId, authority, redirectUri) in `src/web/src/config/index.ts`, sourced from environment variables via Vite (`import.meta.env`).
 
+### Authentication Flow
+
+This app uses **redirect flow** (not popup flow):
+- Call `instance.loginRedirect()` to initiate authentication
+- Microsoft redirects the entire page to login.microsoftonline.com
+- After authentication, user returns to the app at `redirectUri`
+- `handleRedirectPromise()` in `App.tsx` processes the token and completes login
+- Never use `loginPopup()` — it has issues with popup blockers and requires additional redirect URI configuration
+
+**Benefits of redirect flow:**
+- No popup blockers
+- Works on all browsers and mobile devices  
+- Standard authentication UX
+- Simpler configuration (no separate auth-redirect.html needed)
+
 ## Routing Structure
 
 When wiring MSAL into the React app, the provider and route hierarchy in `App.tsx` must follow this exact order:
@@ -25,22 +40,37 @@ When wiring MSAL into the React app, the provider and route hierarchy in `App.ts
 2. `/login` renders `LoginPage` directly, without `Layout` — it is a public route that must not import from any service file or trigger any API calls
 3. All other routes render inside `AuthenticatedTemplate` wrapping `Layout`
 4. `UnauthenticatedTemplate` redirects to `/login` using react-router `Navigate`
-5. `Layout`, its existing child routes, and its `useEffect` calls must never be modified for auth concerns — the guard sits above it in `App.tsx`
+5. `App.tsx` must call `msalInstance.handleRedirectPromise()` in a `useEffect` on mount to process returning auth responses
+6. After successful authentication call navigate('/') using useNavigate from react-router-dom
+7. `Layout`, its existing child routes, and its `useEffect` calls must never be modified for auth concerns — the guard sits above it in `App.tsx`
 
 ```tsx
-<MsalProvider instance={msalInstance}>
-  <BrowserRouter>
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/*" element={
-        <>
-          <AuthenticatedTemplate><Layout /></AuthenticatedTemplate>
-          <UnauthenticatedTemplate><Navigate to="/login" replace /></UnauthenticatedTemplate>
-        </>
-      } />
-    </Routes>
-  </BrowserRouter>
-</MsalProvider> 
+const App: FC = () => {
+  // ... state setup
+
+  // Handle redirect response when returning from Microsoft login
+  useEffect(() => {
+    msalInstance.handleRedirectPromise().catch(err => {
+      console.error('Redirect error:', err);
+    });
+  }, []);
+
+  return (
+    <MsalProvider instance={msalInstance}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/*" element={
+            <>
+              <AuthenticatedTemplate><Layout /></AuthenticatedTemplate>
+              <UnauthenticatedTemplate><Navigate to="/login" replace /></UnauthenticatedTemplate>
+            </>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </MsalProvider>
+  );
+};
 ```
 
 ## Backend (Express / Token Validation)
@@ -59,4 +89,4 @@ When wiring MSAL into the React app, the provider and route hierarchy in `App.ts
 | `AZURE_TENANT_ID` | API — Entra tenant for token issuer validation |
 | `VITE_AZURE_CLIENT_ID` | Web — exposed to Vite build |
 | `VITE_AZURE_AUTHORITY` | Web — External ID authority URL (`https://<tenant>.ciamlogin.com/<tenantId>`) |
-| `VITE_REDIRECT_URI` | Web — post-login redirect URI |
+| `VITE_REDIRECT_URI` | Web — post-login redirect URI (defaults to app origin for redirect flow) |
