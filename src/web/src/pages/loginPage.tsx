@@ -38,7 +38,7 @@ const handleLogin = () => {
             </Stack.Item>
             <Stack.Item>
                 <PrimaryButton
-                    text="Sign in with Microsoft"
+                    text="Sign in"
                     iconProps={{ iconName: 'Signin' }}
                     onClick={handleLogin}
                     styles={{ root: { minWidth: 220, height: 40 } }}
