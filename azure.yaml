@@ -28,10 +28,20 @@ hooks:
   predeploy:
     windows:
       shell: pwsh
-      run: 'echo "VITE_API_BASE_URL=""$env:API_BASE_URL""" > ./src/web/.env.local ; echo "VITE_APPLICATIONINSIGHTS_CONNECTION_STRING=""$env:APPLICATIONINSIGHTS_CONNECTION_STRING""" >> ./src/web/.env.local'
+      run: |
+        echo "VITE_API_BASE_URL=""$env:API_BASE_URL""" > ./src/web/.env.local
+        echo "VITE_APPLICATIONINSIGHTS_CONNECTION_STRING=""$env:APPLICATIONINSIGHTS_CONNECTION_STRING""" >> ./src/web/.env.local
+        echo "VITE_AZURE_CLIENT_ID=""$env:AZURE_CLIENT_ID""" >> ./src/web/.env.local
+        echo "VITE_AZURE_AUTHORITY=""$env:AZURE_AUTHORITY""" >> ./src/web/.env.local
+        echo "VITE_REDIRECT_URI=""$env:REACT_APP_REDIRECT_URI""" >> ./src/web/.env.local
     posix:
       shell: sh
-      run: 'echo VITE_API_BASE_URL=\"$API_BASE_URL\" > ./src/web/.env.local && echo VITE_APPLICATIONINSIGHTS_CONNECTION_STRING=\"$APPLICATIONINSIGHTS_CONNECTION_STRING\" >> ./src/web/.env.local'    
+      run: |
+        echo VITE_API_BASE_URL=\"$API_BASE_URL\" > ./src/web/.env.local
+        echo VITE_APPLICATIONINSIGHTS_CONNECTION_STRING=\"$APPLICATIONINSIGHTS_CONNECTION_STRING\" >> ./src/web/.env.local
+        echo VITE_AZURE_CLIENT_ID=\"$AZURE_CLIENT_ID\" >> ./src/web/.env.local
+        echo VITE_AZURE_AUTHORITY=\"$AZURE_AUTHORITY\" >> ./src/web/.env.local
+        echo VITE_REDIRECT_URI=\"$REACT_APP_REDIRECT_URI\" >> ./src/web/.env.local   
   postdeploy:
     windows:
       shell: pwsh

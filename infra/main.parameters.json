@@ -28,6 +28,12 @@
     },
     "containerRegistryHostSuffix": {
       "value": "${CONTAINER_REGISTRY_HOST_SUFFIX=azurecr.io}"
+    },
+    "azureClientId": {
+      "value": "c0aa8467-dac5-4cb5-82cd-a4d3825ed8e9"
+    },
+    "azureAuthority": {
+      "value": "${AZURE_AUTHORITY}"
     }
   }
 }

@@ -9,6 +9,12 @@ param environmentName string
 @description('Primary location for all resources')
 param location string
 
+@description('Client ID of the Entra ID app registration for MSAL authentication')
+param azureClientId string
+
+@description('Entra ID authority URL (e.g., https://login.microsoftonline.com/{tenantId})')
+param azureAuthority string = 'https://login.microsoftonline.com/${tenant().tenantId}'
+
 // Optional parameters to override the default azd resource naming conventions. Update the main.parameters.json file to provide values. e.g.,:
 // "resourceGroupName": {
 //      "value": "myGroupName"
@@ -285,6 +291,9 @@ output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output API_BASE_URL string = useAPIM ? apimApi.outputs.serviceApiUri : api.outputs.uri
+output AZURE_CLIENT_ID string = azureClientId
+output AZURE_AUTHORITY string = azureAuthority
+output REACT_APP_REDIRECT_URI string = web.outputs.uri
 output REACT_APP_WEB_BASE_URL string = web.outputs.uri
 output SERVICE_API_NAME string = api.outputs.name
 output SERVICE_WEB_NAME string = web.outputs.name
