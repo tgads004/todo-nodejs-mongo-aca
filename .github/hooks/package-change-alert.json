@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PostToolUse": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .github/hooks/scripts/package-change-alert.ps1",
+                "timeout": 15,
+                "cwd": "${workspaceFolder}"
+            }
+        ]
+    }
+}

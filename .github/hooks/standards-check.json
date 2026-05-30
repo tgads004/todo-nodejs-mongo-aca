@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PostToolUse": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .github/hooks/scripts/standards-check.ps1",
+                "timeout": 30,
+                "cwd": "${workspaceFolder}"
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PreToolUse": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File .github/hooks/scripts/pre-commit-check.ps1",
+                "timeout": 60,
+                "cwd": "${workspaceFolder}"
+            }
+        ]
+    }
+}

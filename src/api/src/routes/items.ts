@@ -6,6 +6,8 @@ import { getTodoItemContainer } from "../models/cosmos";
 
 const router = express.Router({ mergeParams: true });
 
+// TODO: Consider adding pagination support with cursor-based paging for better performance
+
 type TodoItemPathParams = {
     listId: string
     itemId: string
@@ -20,13 +22,13 @@ router.get("/", async (req: Request<TodoItemPathParams, unknown, unknown, Paging
         const container = getTodoItemContainer();
         const skip = req.query.skip ? parseInt(req.query.skip) : 0;
         const top = req.query.top ? parseInt(req.query.top) : 20;
-        
+
         const query = `SELECT * FROM c WHERE c.listId = @listId OFFSET ${skip} LIMIT ${top}`;
         const { resources } = await container.items.query({
             query,
             parameters: [{ name: "@listId", value: req.params.listId }]
         }).fetchAll();
-        
+
         res.json(resources);
     } catch (err: any) {
         console.error("Error getting todo items:", err);
@@ -41,13 +43,13 @@ router.post("/", async (req: Request<TodoItemPathParams, unknown, TodoItem>, res
     try {
         const container = getTodoItemContainer();
         const item = createTodoItem(req.params.listId, req.body.name, req.body.description);
-        
+
         const { resource } = await container.items.create(item);
-        
+
         if (!resource) {
             return res.status(500).json({ error: "Failed to create todo item" });
         }
-        
+
         res.setHeader("location", `${req.protocol}://${req.get("Host")}/lists/${req.params.listId}/${resource.id}`);
         res.status(201).json(resource);
     } catch (err: any) {
@@ -63,11 +65,11 @@ router.get("/:itemId", async (req: Request<TodoItemPathParams>, res) => {
     try {
         const container = getTodoItemContainer();
         const { resource } = await container.item(req.params.itemId, req.params.itemId).read();
-        
+
         if (!resource || resource.listId !== req.params.listId) {
             return res.status(404).send();
         }
-        
+
         res.json(resource);
     } catch (err: any) {
         if (err.code === 404) {
@@ -93,7 +95,7 @@ router.put("/:itemId", async (req: Request<TodoItemPathParams, unknown, TodoItem
         };
 
         const { resource } = await container.item(req.params.itemId, req.params.itemId).replace(item);
-        
+
         res.json(resource);
     } catch (err: any) {
         if (err.code === 404) {
@@ -111,7 +113,7 @@ router.delete("/:itemId", async (req, res) => {
     try {
         const container = getTodoItemContainer();
         await container.item(req.params.itemId, req.params.itemId).delete();
-        
+
         res.status(204).send();
     } catch (err: any) {
         if (err.code === 404) {
@@ -130,7 +132,7 @@ router.get("/state/:state", async (req: Request<TodoItemPathParams, unknown, unk
         const container = getTodoItemContainer();
         const skip = req.query.skip ? parseInt(req.query.skip) : 0;
         const top = req.query.top ? parseInt(req.query.top) : 20;
-        
+
         const query = `SELECT * FROM c WHERE c.listId = @listId AND c.state = @state OFFSET ${skip} LIMIT ${top}`;
         const { resources } = await container.items.query({
             query,
@@ -139,7 +141,7 @@ router.get("/state/:state", async (req: Request<TodoItemPathParams, unknown, unk
                 { name: "@state", value: req.params.state as string }
             ]
         }).fetchAll();
-        
+
         res.json(resources);
     } catch (err: any) {
         console.error("Error getting todo items by state:", err);

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.26.170.59819",
+      "templateHash": "2373362579738203762"
+    }
+  },
+  "parameters": {
+    "cosmosAccountName": {
+      "type": "string"
+    },
+    "apiPrincipalId": {
+      "type": "string"
+    },
+    "developerPrincipalId": {
+      "type": "string",
+      "defaultValue": ""
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+      "apiVersion": "2024-05-15",
+      "name": "[format('{0}/{1}', parameters('cosmosAccountName'), guid(parameters('apiPrincipalId'), parameters('cosmosAccountName'), '00000000-0000-0000-0000-000000000002'))]",
+      "properties": {
+        "roleDefinitionId": "[format('{0}/providers/Microsoft.DocumentDB/databaseAccounts/{1}/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', resourceGroup().id, parameters('cosmosAccountName'))]",
+        "principalId": "[parameters('apiPrincipalId')]",
+        "scope": "[format('{0}/providers/Microsoft.DocumentDB/databaseAccounts/{1}', resourceGroup().id, parameters('cosmosAccountName'))]"
+      }
+    },
+    {
+      "condition": "[not(empty(parameters('developerPrincipalId')))]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+      "apiVersion": "2024-05-15",
+      "name": "[format('{0}/{1}', parameters('cosmosAccountName'), guid(parameters('developerPrincipalId'), parameters('cosmosAccountName'), '00000000-0000-0000-0000-000000000002'))]",
+      "properties": {
+        "roleDefinitionId": "[format('{0}/providers/Microsoft.DocumentDB/databaseAccounts/{1}/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002', resourceGroup().id, parameters('cosmosAccountName'))]",
+        "principalId": "[parameters('developerPrincipalId')]",
+        "scope": "[format('{0}/providers/Microsoft.DocumentDB/databaseAccounts/{1}', resourceGroup().id, parameters('cosmosAccountName'))]"
+      }
+    }
+  ]
+}
