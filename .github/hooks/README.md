@@ -916,11 +916,11 @@ These hooks enforce and automate the standards defined in [AGENTS.md](../../AGEN
 
 **Workflow with Skills:**
 1. **During development:** 
-   - Use [build-with-tests](../copilot/skills/build-with-tests/SKILL.md) skill to implement features
+   - Use [build-with-tests](../skills/build-with-tests/SKILL.md) skill to implement features
    - **post-edit hook** auto-formats your code as you work ✨
    - **package-change-alert hook** reminds you to install dependencies after package.json changes 📦
 2. **Before committing:** 
-   - Use [code-review-self-check](../copilot/skills/code-review-self-check/SKILL.md) skill to scan for anti-patterns
+   - Use [code-review-self-check](../skills/code-review-self-check/SKILL.md) skill to scan for anti-patterns
    - **standards-check hook** warns about semantic violations as you edit 🔍
    - **test-coverage-api hook** alerts if new routes lack tests 🧪
 3. **At commit time:** 
@@ -928,7 +928,7 @@ These hooks enforce and automate the standards defined in [AGENTS.md](../../AGEN
 4. **Before deploying:**
    - **pre-deploy hook** validates infrastructure and Azure config 🚀
 5. **Before PR:** 
-   - Use [feature-complete-checklist](../copilot/skills/feature-complete-checklist/SKILL.md) skill for final verification
+   - Use [feature-complete-checklist](../skills/feature-complete-checklist/SKILL.md) skill for final verification
 
 **The Complete Agent Factory:**
 - **📚 Standards:** AGENTS.md + /docs/ — Reference documentation
@@ -980,7 +980,7 @@ These hooks enforce and automate the standards defined in [AGENTS.md](../../AGEN
 - [AGENTS.md](../../AGENTS.md) — Project standards and non-negotiable rules
 - [docs/infrastructure.md](../../docs/infrastructure.md) — Bicep and Azure deployment standards
 - [agent-customization skill](c:\Users\tgads\AppData\Local\Programs\Microsoft VS Code\f6cfa2ea24\resources\app\extensions\copilot\assets\prompts\skills\agent-customization\SKILL.md) — Creating hooks, skills, and instructions
-- [feature-complete-checklist skill](../copilot/skills/feature-complete-checklist/SKILL.md) — Manual pre-commit verification
+- [feature-complete-checklist skill](../skills/feature-complete-checklist/SKILL.md) — Manual pre-commit verification
 
 ---
 
