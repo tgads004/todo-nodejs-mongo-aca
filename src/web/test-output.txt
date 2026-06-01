@@ -1,0 +1,1535 @@
+
+> todo-vite@0.0.0 test
+> jest
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:134:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:55:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:55:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:134:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:55:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:55:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:80:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:80:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:103:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:103:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:126:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:126:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:139:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:139:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:172:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:172:5)
+
+  console.warn
+    The icon "settings" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:196:5)
+
+  console.warn
+    The icon "help" was used but not registered. See https://github.com/microsoft/fluentui/wiki/Using-icons for more information.
+
+    [0m [90m 27 |[39m
+     [90m 28 |[39m   [36mconst[39m renderHeader [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 29 |[39m     [36mreturn[39m render(
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 30 |[39m       [33m<[39m[33mThemeProvider[39m[33m>[39m
+     [90m 31 |[39m         [33m<[39m[33mHeader[39m [33m/[39m[33m>[39m
+     [90m 32 |[39m       [33m<[39m[33m/[39m[33mThemeProvider[39m[33m>[39m[0m
+
+      at warn (node_modules/@fluentui/utilities/lib-commonjs/src/warn/warn.ts:17:13)
+      at getIcon (node_modules/@fluentui/style-utilities/lib-commonjs/src/utilities/icons.ts:199:13)
+      at node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/FontIcon.tsx:17:105
+      at memoizedFunction (node_modules/@fluentui/utilities/src/memoize.ts:139:29)
+      at IconBase.Object.<anonymous>.IconBase.render (node_modules/@fluentui/react/lib-commonjs/components/src/components/Icon/Icon.base.tsx:36:39)
+      at finishClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19752:31)
+      at updateClassComponent (node_modules/react-dom/cjs/react-dom.development.js:19698:24)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21611:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:271:10)
+      at renderHeader (src/layout/header.test.tsx:29:18)
+      at Object.<anonymous> (src/layout/header.test.tsx:196:5)
+
+(node:22816) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL src/layout/header.test.tsx
+  Header Component
+    ├ù displays display name when account.name is available (91 ms)
+    ├ù falls back to preferred_username when name is undefined (16 ms)
+    ├ù falls back to username when both name and preferred_username are undefined (15 ms)
+    ├ù shows "User" when all claims are undefined (20 ms)
+    ├ù shows "User" when accounts array is empty (14 ms)
+    ├ù uses first account when multiple accounts exist (13 ms)
+    ΓêÜ has proper ARIA label for accessibility (40 ms)
+
+  ΓùÅ Header Component ΓÇ║ displays display name when account.name is available
+
+    TestingLibraryElementError: Found multiple elements with the text: John Doe
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      John Doe
+      <div
+        hidden=""
+        id="tooltip8"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        John Doe
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip8"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      John Doe
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as John Doe"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-138"
+                      >
+                        <span>
+                          JD
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        John Doe
+                        <div
+                          hidden=""
+                          id="tooltip8"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          John Doe
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      55 |     renderHeader();
+      56 |
+    > 57 |     expect(screen.getByText('John Doe')).toBeInTheDocument();
+         |                   ^
+      58 |     expect(screen.getByLabelText('Logged in as John Doe')).toBeInTheDocument();
+      59 |   });
+      60 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:57:19)
+
+  ΓùÅ Header Component ΓÇ║ falls back to preferred_username when name is undefined
+
+    TestingLibraryElementError: Found multiple elements with the text: johndoe@example.com
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      johndoe@example.com
+      <div
+        hidden=""
+        id="tooltip15"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        johndoe@example.com
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip15"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      johndoe@example.com
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as johndoe@example.com"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-142"
+                      >
+                        <span>
+                          J
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        johndoe@example.com
+                        <div
+                          hidden=""
+                          id="tooltip15"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          johndoe@example.com
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      80 |     renderHeader();
+      81 |
+    > 82 |     expect(screen.getByText('johndoe@example.com')).toBeInTheDocument();
+         |                   ^
+      83 |     expect(screen.getByLabelText('Logged in as johndoe@example.com')).toBeInTheDocument();
+      84 |   });
+      85 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:82:19)
+
+  ΓùÅ Header Component ΓÇ║ falls back to username when both name and preferred_username are undefined
+
+    TestingLibraryElementError: Found multiple elements with the text: john.doe@example.com
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      john.doe@example.com
+      <div
+        hidden=""
+        id="tooltip22"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        john.doe@example.com
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip22"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      john.doe@example.com
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as john.doe@example.com"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-143"
+                      >
+                        <span>
+                          J
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        john.doe@example.com
+                        <div
+                          hidden=""
+                          id="tooltip22"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          john.doe@example.com
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      103 |     renderHeader();
+      104 |
+    > 105 |     expect(screen.getByText('john.doe@example.com')).toBeInTheDocument();
+          |                   ^
+      106 |     expect(screen.getByLabelText('Logged in as john.doe@example.com')).toBeInTheDocument();
+      107 |   });
+      108 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:105:19)
+
+  ΓùÅ Header Component ΓÇ║ shows "User" when all claims are undefined
+
+    TestingLibraryElementError: Found multiple elements with the text: User
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      User
+      <div
+        hidden=""
+        id="tooltip29"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        User
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip29"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      User
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as User"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-138"
+                      >
+                        <span>
+                          U
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        User
+                        <div
+                          hidden=""
+                          id="tooltip29"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          User
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      126 |     renderHeader();
+      127 |
+    > 128 |     expect(screen.getByText('User')).toBeInTheDocument();
+          |                   ^
+      129 |     expect(screen.getByLabelText('Logged in as User')).toBeInTheDocument();
+      130 |   });
+      131 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:128:19)
+
+  ΓùÅ Header Component ΓÇ║ shows "User" when accounts array is empty
+
+    TestingLibraryElementError: Found multiple elements with the text: User
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      User
+      <div
+        hidden=""
+        id="tooltip36"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        User
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip36"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      User
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as User"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-138"
+                      >
+                        <span>
+                          U
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        User
+                        <div
+                          hidden=""
+                          id="tooltip36"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          User
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      139 |     renderHeader();
+      140 |
+    > 141 |     expect(screen.getByText('User')).toBeInTheDocument();
+          |                   ^
+      142 |     expect(screen.getByLabelText('Logged in as User')).toBeInTheDocument();
+      143 |   });
+      144 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:141:19)
+
+  ΓùÅ Header Component ΓÇ║ uses first account when multiple accounts exist
+
+    TestingLibraryElementError: Found multiple elements with the text: First User
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <div
+      class="ms-TooltipHost root-141"
+      role="none"
+    >
+      First User
+      <div
+        hidden=""
+        id="tooltip43"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        First User
+      </div>
+    </div>
+
+    Ignored nodes: comments, script, style
+    <div
+      hidden=""
+      id="tooltip43"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      First User
+    </div>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          class="body-110"
+        >
+          <div
+            class="ms-Stack css-111"
+          >
+            <div
+              class="ms-Stack css-112"
+            >
+              <span
+                aria-label="Check"
+                class="css-109"
+                data-icon-name="SkypeCircleCheck"
+              />
+              <span
+                class="css-113"
+              >
+                ToDo
+              </span>
+            </div>
+            <div
+              class="ms-StackItem css-114"
+            >
+              <div />
+            </div>
+            <div
+              class="ms-StackItem css-115"
+            >
+              <div
+                class="ms-Stack css-116"
+              >
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Settings"
+                    />
+                  </span>
+                </button>
+                <button
+                  aria-label="Add"
+                  class="ms-Button ms-Button--icon root-117"
+                  data-is-focusable="true"
+                  type="button"
+                >
+                  <span
+                    class="ms-Button-flexContainer flexContainer-118"
+                    data-automationid="splitbuttonprimary"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="ms-Button-icon icon-125"
+                      data-icon-name="Help"
+                    />
+                  </span>
+                </button>
+                <div
+                  aria-label="Logged in as First User"
+                  class="ms-Persona ms-Persona--size24 root-126"
+                >
+                  <div
+                    class="ms-Persona-coin ms-Persona--size24 coin-133"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-Persona-imageArea imageArea-135"
+                      role="presentation"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="ms-Persona-initials initials-144"
+                      >
+                        <span>
+                          FU
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="ms-Persona-details details-127"
+                  >
+                    <div
+                      class="ms-Persona-primaryText primaryText-128"
+                      dir="auto"
+                    >
+                      <div
+                        class="ms-TooltipHost root-141"
+                        role="none"
+                      >
+                        First User
+                        <div
+                          hidden=""
+                          id="tooltip43"
+                          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+                        >
+                          First User
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      172 |     renderHeader();
+      173 |
+    > 174 |     expect(screen.getByText('First User')).toBeInTheDocument();
+          |                   ^
+      175 |     expect(screen.queryByText('Second User')).not.toBeInTheDocument();
+      176 |     expect(screen.getByLabelText('Logged in as First User')).toBeInTheDocument();
+      177 |   });
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (src/layout/header.test.tsx:174:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 1 passed, 7 total
+Snapshots:   0 total
+Time:        2.762 s
+Ran all test suites.

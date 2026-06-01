@@ -1,5 +1,9 @@
+// React import needed for Jest test environment JSX transform
+// @ts-expect-error - React is used by JSX transform in tests
+import React, { FC, ReactElement } from 'react';
 import { FontIcon, getTheme, IconButton, IIconProps, IStackStyles, mergeStyles, Persona, PersonaSize, Stack, Text } from '@fluentui/react';
-import { FC, ReactElement } from 'react';
+import { useMsal } from '@azure/msal-react';
+import type { AccountInfo } from '@azure/msal-browser';
 
 const theme = getTheme();
 
@@ -34,7 +38,29 @@ const iconProps: IIconProps = {
     }
 }
 
+/**
+ * Extracts a display name for the authenticated user from MSAL account info.
+ * Implements defensive fallback chain: name → preferred_username → username → "User"
+ * @param accounts - MSAL accounts array from useMsal() hook
+ * @returns Display name string (never undefined/null)
+ */
+const getUserDisplayName = (accounts: AccountInfo[]): string => {
+    if (!accounts || accounts.length === 0) {
+        return "User";
+    }
+    
+    const account = accounts[0];
+    
+    return account.name 
+        || account.idTokenClaims?.preferred_username 
+        || account.username 
+        || "User";
+};
+
 const Header: FC = (): ReactElement => {
+    const { accounts } = useMsal();
+    const displayName = getUserDisplayName(accounts);
+    
     return (
         <Stack horizontal>
             <Stack horizontal styles={logoStyles}>
@@ -48,7 +74,11 @@ const Header: FC = (): ReactElement => {
                 <Stack horizontal styles={toolStackClass} grow={1}>
                     <IconButton aria-label="Add" iconProps={{ iconName: "Settings", ...iconProps }} />
                     <IconButton aria-label="Add" iconProps={{ iconName: "Help", ...iconProps }} />
-                    <Persona size={PersonaSize.size24} text="Sample User" />
+                    <Persona 
+                        size={PersonaSize.size24} 
+                        text={displayName}
+                        aria-label={`Logged in as ${displayName}`}
+                    />
                     {/* <Toggle label="Dark Mode" inlineLabel styles={{ root: { marginBottom: 0 } }} onChange={changeTheme} /> */}
                 </Stack>
             </Stack.Item>
