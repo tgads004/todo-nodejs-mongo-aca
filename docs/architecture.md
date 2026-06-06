@@ -5,6 +5,7 @@
 ```
 todo-nodejs-mongo-aca/
 ├── AGENTS.md                  # LLM agent instructions (start here)
+├── README.md                  # Project overview and getting started guide
 ├── azure.yaml                 # azd service + workflow definitions
 ├── openapi.yaml               # OpenAPI spec for the REST API
 ├── infra/                     # Bicep infrastructure-as-code
@@ -16,6 +17,7 @@ todo-nodejs-mongo-aca/
 ├── seed/                      # Database seed scripts
 ├── src/
 │   ├── api/                   # Node.js + Express backend
+│   │   ├── Dockerfile         # Container image definition
 │   │   ├── src/
 │   │   │   ├── app.ts         # Express app factory + middleware
 │   │   │   ├── index.ts       # Server entry point
@@ -24,6 +26,7 @@ todo-nodejs-mongo-aca/
 │   │   │   └── routes/        # Express route handlers + integration tests
 │   │   └── config/            # node-config JSON files
 │   └── web/                   # React 18 frontend
+│       ├── Dockerfile         # Container image definition
 │       └── src/
 │           ├── actions/       # Redux-style action creators
 │           ├── components/    # Reusable React components
@@ -35,6 +38,7 @@ todo-nodejs-mongo-aca/
 │           ├── services/      # REST API client services
 │           └── ux/            # Fluent UI theme and shared styles
 └── docs/                      # Agent instruction detail files
+    └── features/              # Feature specs, stories, and test plans
 ```
 
 ## Service Boundaries

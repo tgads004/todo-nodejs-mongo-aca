@@ -1,0 +1,55 @@
+name: Notify Test Repository of Feature Changes
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'docs/features/**'
+  workflow_dispatch:
+    inputs:
+      feature_name:
+        description: 'Feature name to notify'
+        required: false
+
+jobs:
+  notify-test-repo:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Detect changed features
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            FEATURE="${{ github.event.inputs.feature_name }}"
+            if [ -z "$FEATURE" ]; then
+              FEATURE=$(echo "${{ github.ref_name }}" | sed 's/feature\///')
+            fi
+          else
+            CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^docs/features/')
+            FEATURE=$(echo "$CHANGED" | cut -d'/' -f3 | sort -u | tr '\n' ',')
+          fi
+          echo "features=$FEATURE" >> $GITHUB_OUTPUT
+      
+      - name: Send webhook
+        env:
+          GH_TOKEN: ${{ secrets.TEST_REPO_WEBHOOK_TOKEN }}
+        run: |
+          IFS=',' read -ra FEATURES <<< "${{ steps.detect.outputs.features }}"
+          for FEATURE in "${FEATURES[@]}"; do
+            if [ -n "$FEATURE" ]; then
+              gh api /repos/tgads004/pw-todo-agentic-taf/dispatches \
+                --method POST \
+                --field event_type=feature_merged \
+                --field client_payload[feature_name]="$FEATURE" \
+                --field client_payload[source_repo]="${{ github.repository }}" \
+                --field client_payload[source_sha]="${{ github.sha }}" \
+                --field client_payload[pr_number]="${{ github.event.pull_request.number }}"
+            fi
+          done
